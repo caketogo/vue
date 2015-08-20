@@ -1,0 +1,43 @@
+<html
+<head>
+</head>
+<body>
+
+    <div id="demo">
+
+        <h1 v-text="user.forename" v-on="click: clickHandler"></h1>
+    </div>
+
+
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript">
+
+
+var data={
+        user:{
+            forename:'simon',
+            surname:'bridgewater'
+        },
+
+    }
+
+
+
+    demo = new Vue({
+
+        el: '#demo',
+        data:data,
+        methods:{
+
+            clickHandler: function(){
+
+                    alert('boo');
+            }
+
+        }
+
+    });
+
+</script>
+</body>
+</html>
