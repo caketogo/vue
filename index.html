@@ -5,8 +5,8 @@
 
      <div id="demo">
         <ul>
-            <li v-repeat="users" class="item-{{$index}}">
-            {{$index}} - {{forename}} Age {{age}}
+            <li v-on="click: clickHandler" v-repeat="user in users" class="item-{{$index}}">
+            {{$index}} - {{user.forename}} Age {{user.age}}
             </li>
         </ul>
     </div>
@@ -43,7 +43,7 @@ var data={
 
             clickHandler: function(){
 
-                    alert('boo');
+                   data.users.push({forneame:'chloe','age':16})
             }
 
         }
