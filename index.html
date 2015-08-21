@@ -4,36 +4,81 @@
 <body>
 
      <div id="demo">
+        <div id="header">
+            <h1>{{title}}</h1>
+        </div>
+        <div id="add_person">
+            <input type="text" v-model="name">
+            <input type="text" v-model="age">
+            <button v-on="click:submit">Add</button>
+        </div>
         <ul>
-            <li v-on="click: clickHandler" v-repeat="user in users" class="item-{{$index}}">
-            {{$index}} - {{user.forename}} Age {{user.age}}
+            <li v-on="click: clickHandler(user)" v-repeat="user in users" class="person">
+              {{user.name}}
+
+
             </li>
         </ul>
+        <child></child
+
     </div>
 
 
+<style type="text/css">
+
+#demo{
+    width:400px;
+    height:400px;
+    border: 1px dotted #444;
+}
+#header{
+    margin:0px;
+    padding:0px;
+    font-size:0.5em;
+
+}
+.person{
+    border:1px solid #555;width:140px;height:40px;
+    float:left;
+    text-align: center;
+    vertical-align: middle;
+    margin:3px;
+  }
+
+</style>
 
 
 <script type="text/javascript" src="js/vue.js"></script>
 <script type="text/javascript">
 
+var children ={name: 'dickie', age: 3}
 
 var data={
+        title: 'My Demo',
+        name: 'Myname',
         users:
             [
             {
-                forename:'simon',
-                age:'50'
+                name:'simon',
+                age:10,
+                gender: 'male'
             },
             {
-                forename:'sophie',
-                age:'20'
+                name:'sophie',
+                age:5,
+                gender: 'female'
             }
             ]
 
+
     }
 
+    Vue.component('child',{
 
+        template:'<p>child</p>',
+        data:children,
+
+    })
 
     demo = new Vue({
 
@@ -41,11 +86,24 @@ var data={
         data:data,
         methods:{
 
-            clickHandler: function(){
+            clickHandler: function(user){
 
-                   data.users.push({forneame:'chloe','age':16})
+                console.log(user);
+                user.age++;
+                data.users.push({name:'chloe','age':16,gender:'male'});
+            },
+            submit: function(e){
+             data.users.push({name:'chloe','age':16,gender:'male'});
+
+            },
+
+        },
+        computed:{
+
+            ageGender: function() {
+                console.log(this);
+                return this.name;
             }
-
         }
 
     });
