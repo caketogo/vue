@@ -3,10 +3,15 @@
 </head>
 <body>
 
-    <div id="demo">
-
-        <h1 v-text="user.forename" v-on="click: clickHandler"></h1>
+     <div id="demo">
+        <ul>
+            <li v-repeat="users" class="item-{{$index}}">
+            {{$index}} - {{forename}} Age {{age}}
+            </li>
+        </ul>
     </div>
+
+
 
 
 <script type="text/javascript" src="js/vue.js"></script>
@@ -14,10 +19,17 @@
 
 
 var data={
-        user:{
-            forename:'simon',
-            surname:'bridgewater'
-        },
+        users:
+            [
+            {
+                forename:'simon',
+                age:'50'
+            },
+            {
+                forename:'sophie',
+                age:'20'
+            }
+            ]
 
     }
 
